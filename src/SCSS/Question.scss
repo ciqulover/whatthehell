@@ -1,0 +1,43 @@
+section.questions {
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    padding: 20px;
+    .user{
+        text-align: center;
+
+    }
+    span{
+        display: block;
+
+    }
+    .describe{
+        color:chocolate;
+        height:20px;
+        margin: 10px 0;
+
+    }
+    button {
+        display: block;
+        width: 30%;
+        height: 30px;
+        margin: 30px auto;
+        font-size: 16px;
+        border: 1px solid chocolate;
+        background-color: white;
+        color: chocolate;
+        border-radius: 4px;
+        &:hover,&:active{
+            border: 1px solid white;
+            color: white;
+            background-color: chocolate;
+        }
+    }
+    ul li {
+        list-style: none;
+
+        color: #888888;
+        margin: 20px auto;
+    }
+}
+
+
+

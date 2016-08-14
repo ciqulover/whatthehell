@@ -1,20 +1,17 @@
 var mongoose = require('mongoose')
+var data=require('./dataBase')
 mongoose.connect('mongodb://localhost/whatthehell')
 mongoose.set('debug',true)
 var Schema=mongoose.Schema
 var dataSchema=new Schema({
     qns:Array,
     ans:Array,
+    uid:String,
+    answered:Boolean
 })
 
 var Data=mongoose.model('dataSchema',dataSchema)
-var sample=new Data({
-    qns: [
-        ['男朋友出差', '男朋友出差去了'],
-        ['我们家狗狗生病了', '我家狗狗生病了'],
-    ],
-    ans: [],
-})
+var sample=new Data(data)
 
 var db = mongoose.connection
 db.on('error', function () {
@@ -22,9 +19,13 @@ db.on('error', function () {
 })
 db.once('open', function () {
     console.log('opened')
-    // sample.save(function (err) {
-    //     if(err)return console.log(err)
-    // })
+    Data.find(null,function (err,doc) {
+        if(!doc[0]){
+            sample.save(function (err) {
+                if(err)return console.log(err)
+            })
+        }
+    })
 })
 
 module.exports={
