@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db=require('./db')
+var fs=require('fs')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,8 +26,13 @@ router.post('/save',function (req,res,next) {
   },function () {
     
   })
+  var output=JSON.stringify(req.body,['qns','ans','uid','answered'],4)
+  fs.writeFile('./data/output.txt',output,function (err,data) {
+    if (err) {
+      return console.error(err);
+    }
+  })
   res.send('ok')
-
 })
 
 
